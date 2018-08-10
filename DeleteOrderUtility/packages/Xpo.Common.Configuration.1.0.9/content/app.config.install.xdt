@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+
+  <configSections xdt:Transform="InsertBefore(/configuration/*[1])">
+  </configSections>
+
+  <configSections xdt:Locator="XPath(/configuration/configSections[last()])">
+    <section name="xpo" type="Xpo.Common.Configuration.XpoSection, Xpo.Common.Configuration" xdt:Transform="InsertIfMissing"/>
+  </configSections>
+
+  <configSections xdt:Transform="RemoveAll" xdt:Locator="Condition(count(*)=0)" />
+  
+  <xpo environment="Auto" xdt:Transform="InsertIfMissing" />
+</configuration>

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NLog.Xpo.Lumberjack.Api.NLog4</name>
+    </assembly>
+    <members>
+        <member name="M:NLog.Xpo.Lumberjack.Api.NLog4.LumberjackTargetConfig.Configure(System.String,System.String,NLog.LogLevel,NLog.LogLevel,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Configures the Lumberjack NLog target and rules for logging/telemetry. This should be called on startup of your application.
+            </summary>
+            <param name="applicationGroup">This must be one of the known applicationGroups by the Lumberjack API. Please see the documentation for the current list.</param>
+            <param name="role">The role of this application (api/jobs/web etc).</param>
+            <param name="minLogLevel">The minimum log level. Default is Info.</param>
+            <param name="maxLogLevel">The maximum log level. Default is unbounded.</param>
+            <param name="applicationName">Optionally specify the applicationName override. By default this is pulled from your xpo config element.</param>
+            <param name="loggingApiUrl">Default is resolved automatically based on the current environment in your xpo config section. If you do not have an xpo config section with the environment defined, this is required.</param>
+            <param name="loggerPatternName">The logger pattern, with a default of *.</param>
+            <param name="setToPreferredTimeSource">Updates NLog configuration to the preferred timesource (AccurateUTC).</param>
+        </member>
+        <member name="M:NLog.Xpo.Lumberjack.Api.NLog4.XpoLumberjackApiTarget.Write(NLog.LogEventInfo)">
+            <summary>
+            Writes the specified logging event to the endpoint.
+            </summary>
+            <param name="logEvent">The logging event.</param>
+        </member>
+        <member name="M:NLog.Xpo.Lumberjack.Api.NLog4.XpoLumberjackApiTarget.Write(NLog.Common.AsyncLogEventInfo[])">
+            <summary>
+            NOTE! Will soon be marked obsolete. Instead override Write(IList{AsyncLogEventInfo} logEvents)
+            
+            Writes an array of logging events to the log target. By default it iterates on all
+            events and passes them to "Write" method. Inheriting classes can use this method to
+            optimize batch writes.
+            </summary>
+            <param name="logEvents">Logging events to be written out.</param>
+        </member>
+        <member name="M:NLog.Xpo.Lumberjack.Api.NLog4.XpoLumberjackApiTarget.Write(System.Collections.Generic.IList{NLog.Common.AsyncLogEventInfo})">
+            <summary>
+            Writes an array of logging events to the log target. By default it iterates on all
+            events and passes them to "Write" method. Inheriting classes can use this method to
+            optimize batch writes.
+            </summary>
+            <param name="logEvents">Logging events to be written out.</param>
+        </member>
+        <member name="M:NLog.Xpo.Lumberjack.Api.NLog4.XpoLumberjackApiTarget.BucketAsyncLogEvents(System.Collections.Generic.IEnumerable{NLog.Common.AsyncLogEventInfo})">
+            <summary>
+            Bucket log events by role to be batched
+            </summary>
+            <param name="logEvents"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NLog.Xpo.Lumberjack.Api.NLog4.XpoLumberjackApiTarget.MustBeRethrown(System.Exception)">
+            <summary>
+            Determines whether the exception must be rethrown and logs the error to the <see cref="T:NLog.Common.InternalLogger"/> if <see cref="!:IsLoggedToInternalLogger"/> is <c>false</c>.
+            
+            Advised to log first the error to the <see cref="T:NLog.Common.InternalLogger"/> before calling this method.
+            </summary>
+            <param name="exception">The exception to check.</param>
+            <returns><c>true</c>if the <paramref name="exception"/> must be rethrown, <c>false</c> otherwise.</returns>
+        </member>
+    </members>
+</doc>
